@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="noticeMapper">
+  	<!-- 글쓰기 -->
+  	<insert id="noticeInsert" parameterType="com.iu.s3.model.board.NoticeVO">
+  		insert into notice 
+  		values (board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0)
+  	</insert>
+	
+	<!-- 글삭제 -->
+	<delete id="noticeDelete" parameterType="java.lang.Integer">
+		delete notice where num = #{num}
+	</delete>
+	
+	<!-- 글보기 -->
+	<select id="noticeSelectOne" resultType="com.iu.s3.model.board.NoticeVO" parameterType="java.util.Map">
+		select * from notice where num = #{num}
+	</select>
+	
+	<!-- 전체조회 -->
+	<select id="noticeList" resultType="com.iu.s3.model.board.NoticeVO">
+		select * from notice order by num desc
+	</select>
+	
+	<!-- 글수정 -->
+	<select id="noticeUpdate" parameterType="com.iu.s3.model.board.NoticeVO">
+		update notice set title = #{title}, contents = #{contents} where num = #{num}
+	</select>
+	
+	<!-- 조회수 -->
+	<select id="noticeHitup" parameterType="com.iu.s3.model.board.NoticeVO">
+		update notice set hit = #{hit} where num=#{num}
+	</select>
+	
+	<!-- 이전글 -->
+	<select id="noticeSelectN" parameterType="java.lang.Integer">
+		select * from notice where num = (select min(num) from notice where num > #{num})
+	</select>
+	
+	<!-- 다음글 -->
+	<select id="noticeSelectP" parameterType="java.lang.Integer">
+		select * from notice where num = (select max(num) from notice where #{num} > num)
+	</select>
+  </mapper>

@@ -3,10 +3,12 @@
 <html>
 <head>
 	<title>Home</title>
+<c:import url="layout/bootstrap.jsp" />
 </head>
 <body>
+<c:import url="layout/nav.jsp" />
 <h1>
-	Hello world!  
+	Hello world! Spring3 Home  
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
