@@ -10,6 +10,10 @@ public class Pager {
 	private Integer totalBlock;
 	
 	public Integer getCurPage() {
+		if(this.curPage == null) {
+			this.curPage=1;
+		}
+		
 		return curPage;
 	}
 	public void setCurPage(Integer curPage) {
