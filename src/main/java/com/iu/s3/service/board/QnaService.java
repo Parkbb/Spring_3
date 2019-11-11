@@ -1,5 +1,7 @@
 package com.iu.s3.service.board;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -17,4 +19,8 @@ public class QnaService {
 		
 		return qnaDAO.qnaInsert(qnaVO);
 	}
+	
+	//public List<QnaVO> qnaList() throws Exception{
+		//return qnaDAO.qnaList();
+	//}
 }

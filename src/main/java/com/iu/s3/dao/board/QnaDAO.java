@@ -1,5 +1,7 @@
 package com.iu.s3.dao.board;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,4 +23,9 @@ public class QnaDAO {
 		return sqlsession.insert(NAMESPACE+"qnaInsert", qnaVO);
 		
 	}
+	
+	/*
+	 * public List<QnaVO> qnaList() throws Exception{ return
+	 * sqlsession.selectList(NAMESPACE+"qnaList"); }
+	 */
 }
