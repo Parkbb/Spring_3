@@ -1,6 +1,7 @@
 package com.iu.s3.dao.board;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.iu.s3.model.board.QnaVO;
+import com.iu.s3.util.RowMaker;
 
 
 @Repository
@@ -24,8 +26,12 @@ public class QnaDAO {
 		
 	}
 	
-	/*
-	 * public List<QnaVO> qnaList() throws Exception{ return
-	 * sqlsession.selectList(NAMESPACE+"qnaList"); }
-	 */
+	public List<QnaVO> qnaList(RowMaker rowMaker) throws Exception{ 
+		
+		return sqlsession.selectList(NAMESPACE+"qnaList", rowMaker); 
+	 
+	}
+	public int qnaCount() throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"qnaCount");
+	} 
 }

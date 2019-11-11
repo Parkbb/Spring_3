@@ -27,15 +27,19 @@ public class QnaDAOTest extends TestAbstractCase{
 	@Test
 	public void testqnaInsert() throws Exception{
 		
+		for (int i = 0; i < 150; i++) {
+			
 		QnaVO qnaVO = new QnaVO();
 		
-		qnaVO.setTitle("testtitle");
-		qnaVO.setWriter("testwriter");
-		qnaVO.setContents("testcontents");
+		qnaVO.setTitle("testtitle"+i);
+		qnaVO.setWriter("testwriter"+i);
+		qnaVO.setContents("testcontents"+i);
 		
 		int result = qnaDAO.qnaInsert(qnaVO);
+		Thread.sleep(50);
+		}
 		
-		assertEquals(1, result);
+		//assertEquals(1, result);
 	}
 
 }

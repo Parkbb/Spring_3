@@ -10,4 +10,18 @@
   		values (board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0, 0, 0, 0)
   	</insert>
 	
+	<!-- 글전체 -->
+	<select id="qnaList" resultType="com.iu.s3.model.board.QnaVO" parameterType="com.iu.s3.util.RowMaker">
+		select * from
+		(select N.*, rownum R from 
+		(select * from qna order by num desc) N)
+		where R between #{startRow} and #{lastRow}
+		
+	</select>
+	
+	<!-- 글전체 수 -->
+	<select id="qnaCount">
+		select count(num) from qna
+	
+	</select>
   </mapper>
