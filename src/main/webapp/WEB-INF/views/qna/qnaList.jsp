@@ -7,6 +7,6 @@
 <title>Qna List Page</title>
 </head>
 <body>
-
+<h1>List Page</h1>
 </body>
 </html>
