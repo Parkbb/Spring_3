@@ -40,7 +40,7 @@
 
 		</table>
 		<c:forEach begin="${pager.startRow}" end="${pager.lastRow}" var="i">
-				${i}
+				<a href = "qnaList.qna?curPage=${i}">${i}</a>
 			</c:forEach>
 		<!-- session member, memberDTO -->
 		<c:if test="${not empty sessionScope.member}">
