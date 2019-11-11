@@ -2,7 +2,9 @@ package com.iu.s3.dao.board;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -27,14 +29,14 @@ public class NoticeDAOTest extends TestAbstractCase{
 	
 	//@Test
 	public void noticeInsertTest() throws Exception{
+		for(int i=50; i <100; i++) {
 		NoticeVO noticeVO = new NoticeVO();
-		
-		noticeVO.setTitle("testw");
-		noticeVO.setWriter("testw");
-		noticeVO.setContents("testc");
-		
+		noticeVO.setTitle("테스트"+i);
+		noticeVO.setWriter("작성자"+i);
+		noticeVO.setContents("테스트내용"+i);
 		int result = noticeDAO.noticeInsert(noticeVO);
-		assertEquals(1, result);
+		}
+		//assertEquals(1, result);
 		
 	}
 	
@@ -61,10 +63,17 @@ public class NoticeDAOTest extends TestAbstractCase{
 
 	//@Test
 	public void noticeListTest() throws Exception{
-		
-		List<NoticeVO> ar = noticeDAO.noticeList();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		List<NoticeVO> ar = noticeDAO.noticeList(map);
 		
 		assertNotEquals(0, ar.size());
+	}
+	
+	@Test
+	public void noticeCountTest() throws Exception{
+		
+		int num = noticeDAO.noticeCount();
+		assertEquals(106, num);
 	}
 	
 	//@Test
@@ -80,7 +89,7 @@ public class NoticeDAOTest extends TestAbstractCase{
 		
 		assertEquals(1, result);
 	}
-	@Test
+	//@Test
 	public void noticeSelectP() throws Exception{
 		
 		NoticeVO noticeVO = new NoticeVO();
@@ -91,7 +100,7 @@ public class NoticeDAOTest extends TestAbstractCase{
 		
 	}
 	
-	@Test
+	//@Test
 	public void noticeSelectN() throws Exception{
 		
 		NoticeVO noticeVO = new NoticeVO();

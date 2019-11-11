@@ -1,6 +1,8 @@
 package com.iu.s3.service.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -42,10 +44,33 @@ public class NoticeService {
 		return noticeDAO.noticeSelectOne(num);
 	}
 	
-	public List<NoticeVO> noticeList() throws Exception{
+	public Map<String, Object> noticeList(int curPage) throws Exception{
 		
-		List<NoticeVO> ar = noticeDAO.noticeList();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		int startnum = (curPage-1)*10+1;
+		int lastnum = curPage*10;
 		
-		return ar;
+		map.put("startRow", startnum);
+		map.put("lastRow", lastnum);
+		List<NoticeVO> ar = noticeDAO.noticeList(map);
+		int total = noticeDAO.noticeCount();
+		
+		int totalPage = total/10;
+		
+		if(total%10 != 0) {
+			totalPage = totalPage + 1;
+		}
+		
+		//totalBlock 갯수
+		
+		int totalBlock = totalPage /5;
+		if(totalPage%5 !=0)
+			totalBlock = totalBlock + 1;
+		
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("totalPage", totalPage);
+		map2.put("list", ar);
+		
+		return map2;
 	}
 }

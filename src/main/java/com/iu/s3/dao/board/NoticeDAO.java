@@ -40,8 +40,12 @@ public class NoticeDAO {
 		return sqlsession.selectOne(NAMESPACE+"noticeSelectOne", map);
 	}
 	
-	public List<NoticeVO> noticeList() throws Exception{
-		return sqlsession.selectList(NAMESPACE+"noticeList");
+	public List<NoticeVO> noticeList(Map<String, Integer> map) throws Exception{
+		return sqlsession.selectList(NAMESPACE+"noticeList", map);
+	}
+	
+	public int noticeCount() throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"noticeCount");
 	}
 	
 	public int noticeUpdate(NoticeVO noticeVO) throws Exception{

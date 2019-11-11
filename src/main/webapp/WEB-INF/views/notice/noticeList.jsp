@@ -33,9 +33,13 @@
 			</tbody>
 			
 		</table>
-			<c:forEach begin="1" end="9" var="i" varStatus="st">
-				${pageScope.i}
+		<div style="margin: auto;">
+			 <ul class="pagination">
+			<c:forEach begin="1" end="${totalPage}" var="i">
+				<li><a href="noticeList?curPage=${i}">${i}</a></li>
 			</c:forEach>
+			</ul>
+		</div>
 				<!-- session member, memberDTO -->
 				<c:if test="${empty sessionScope.member}">
 					<a href = "noticeWrite.notice" class = "btn btn-primary" style="float: right;">INSERT</a>

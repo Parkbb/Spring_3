@@ -1,6 +1,8 @@
 package com.iu.s3;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s3.model.board.NoticeVO;
@@ -23,14 +26,16 @@ public class NoticeController {
 	//list : /notice/noticeList GET
 	//WEB-INF/views/notice/noticeList.jsp
 	@RequestMapping("noticeList")
-	public void noticeList(Model model) throws Exception{
+	public void noticeList(Model model, @RequestParam(defaultValue = "1") int curPage) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		List<NoticeVO> ar = noticeService.noticeList();
+		map = noticeService.noticeList(curPage);
 		
+		List<NoticeVO> ar = (List<NoticeVO>)map.get("list");
+		int totalPage = (Integer)map.get("totalPage");
 		
 		model.addAttribute("List", ar);
-		
-		
+		model.addAttribute("totalPage", totalPage);
 	}
 	
 	@RequestMapping("noticeSelect")
