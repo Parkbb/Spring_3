@@ -24,7 +24,7 @@ public class QnaDAOTest extends TestAbstractCase{
 		assertNotNull(sqlSession);
 	}
 	
-	@Test
+	//@Test
 	public void testqnaInsert() throws Exception{
 		
 		for (int i = 0; i < 150; i++) {
@@ -40,6 +40,14 @@ public class QnaDAOTest extends TestAbstractCase{
 		}
 		
 		//assertEquals(1, result);
+	}
+	
+	@Test
+	public void testqnaCount() throws Exception{
+		
+		
+		
+		
 	}
 
 }

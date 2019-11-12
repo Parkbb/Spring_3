@@ -27,7 +27,7 @@
 				<c:forEach items="${List}" var="dto">
 					<tr>
 						<td style="text-align: center;">${dto.num}</td>
-						<td style="text-align: center;"><a href="noticeSelect.notice?num=${dto.num}">${dto.title}</a></td>
+						<td style="text-align: center;"><a href="qnaSelect?num=${dto.num}">${dto.title}</a></td>
 						<td style="text-align: center;">${dto.writer}</td>
 						<td style="text-align: center;">${dto.reg_date}</td>
 						<td style="text-align: center;">${dto.hit}</td>
@@ -39,18 +39,21 @@
 			</tbody>
 
 		</table>
-		<c:forEach begin="${pager.startRow}" end="${pager.lastRow}" var="i">
-				<a href = "qnaList.qna?curPage=${i}">${i}</a>
+		<div style="margin: auto;">
+			 <ul class="pagination">
+			 <c:if test="${pager.curBlock gt 1}">
+				 <li><a href="qnaList?curPage=${pager.startNum-1}">이전</a></li>
+			 </c:if>
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				<li><a href="qnaList?curPage=${i}">${i}</a></li>
 			</c:forEach>
-		<!-- session member, memberDTO -->
-		<c:if test="${not empty sessionScope.member}">
-			<a href="noticeWrite.notice" class="btn btn-primary"
-				style="float: right;">INSERT</a>
-		</c:if>
-		<c:choose>
-			<c:when test=""></c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
+			<c:if test="${pager.curBlock ne pager.totalBlock}">
+				<li><a href="qnaList?curPage=${pager.lastNum+1}">다음</a></li>
+			</c:if>
+			
+			
+			</ul>
+		</div>
 
 
 	</div>

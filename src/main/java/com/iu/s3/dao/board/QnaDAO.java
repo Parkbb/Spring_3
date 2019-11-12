@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.iu.s3.model.board.QnaVO;
+import com.iu.s3.util.Pager;
 import com.iu.s3.util.RowMaker;
 
 
@@ -26,9 +27,9 @@ public class QnaDAO {
 		
 	}
 	
-	public List<QnaVO> qnaList(RowMaker rowMaker) throws Exception{ 
+	public List<QnaVO> qnaList(Pager pager) throws Exception{ 
 		
-		return sqlsession.selectList(NAMESPACE+"qnaList", rowMaker); 
+		return sqlsession.selectList(NAMESPACE+"qnaList", pager); 
 	 
 	}
 	public int qnaCount() throws Exception{
