@@ -18,6 +18,7 @@
         </ul>
       </li>
       <li><a href="${pageContext.request.contextPath}/notice/noticeList">NOTICE</a></li>
+      <li><a href="${pageContext.request.contextPath}/qna/qnaList">QNA</a></li>
 
     </ul>
     <ul class="nav navbar-nav navbar-right">
