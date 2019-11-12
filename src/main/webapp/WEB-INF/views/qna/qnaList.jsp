@@ -10,6 +10,20 @@
 <c:import url="../layout/bootstrap.jsp" />
 <body>
 	<c:import url="../layout/nav.jsp" />
+	<div class="container" class="col-sm-2">
+		<form id="frm" action="qnaList" class="col-sm-2">
+		<input type="hidden" id="curPage" value="1" name="curPage">
+			<select class="form-control" id="sel1" name="kind" class="col-sm-2" style="float: left" >
+				<option id="kt" value="kt">Title</option>
+				<option id="kc" value="kc">Contents</option>
+				<option id="kw" value="kw">Writer</option>
+			</select>
+			<input type="text" class="form-control" placeholder="Search" name="search" class="col-sm-2" style="float: left" value="${pager.search}">
+     		 <div class="input-group-btn">
+        	<button class="btn btn-default" type="submit" style="float: left"><i class="glyphicon glyphicon-search" style="float: left"></i></button>
+      	  </div>
+		</form>
+	</div>
 	<div class="container">
 		<table class="table">
 			<thead>
@@ -42,13 +56,13 @@
 		<div style="margin: auto;">
 			 <ul class="pagination">
 			 <c:if test="${pager.curBlock gt 1}">
-				 <li><a href="qnaList?curPage=${pager.startNum-1}">이전</a></li>
+				 <li><span id="${pager.startNum-1}" class="list" >이전</span></li>
 			 </c:if>
 			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<li><a href="qnaList?curPage=${i}">${i}</a></li>
+				<li><span id="${i}" class="list">${i}</span></li>
 			</c:forEach>
 			<c:if test="${pager.curBlock ne pager.totalBlock}">
-				<li><a href="qnaList?curPage=${pager.lastNum+1}">다음</a></li>
+				<li><span id="${pager.lastNum+1}" class="list" >다음</span></li>
 			</c:if>
 			
 			
@@ -57,5 +71,17 @@
 
 
 	</div>
+	
+	<script type="text/javascript">
+		var kind = '${pager.kind}';
+		if(kind ==''){
+			kind='kt';
+		}
+		$("#"+kind).prop("selected", true);
+		$(".list").click(function() {
+			$("#curPage").val($(this).attr("id"))
+			$("#frm").submit();
+		});
+	</script>
 </body>
 </html>

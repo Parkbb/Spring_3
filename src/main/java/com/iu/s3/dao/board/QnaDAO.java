@@ -32,7 +32,7 @@ public class QnaDAO {
 		return sqlsession.selectList(NAMESPACE+"qnaList", pager); 
 	 
 	}
-	public int qnaCount() throws Exception{
-		return sqlsession.selectOne(NAMESPACE+"qnaCount");
+	public int qnaCount(Pager pager) throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"qnaCount", pager);
 	} 
 }

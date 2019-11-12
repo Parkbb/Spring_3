@@ -4,9 +4,27 @@ public class Pager {
 
 	private Integer curPage;//현재 페이지번호
 	private Integer perPage;//페이지 당 글 갯수
+	private String kind; //검색종류
+	private String search; //검색어
 	
 	//DB
 	private Integer startRow;//시작 rownum
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	public String getSearch() {
+		if(search == null) {
+			search="";
+		}
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	private Integer lastRow;//마지막 rownum
 	
 	//View(jsp)

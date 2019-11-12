@@ -3,6 +3,8 @@ package com.iu.s3;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +24,12 @@ public class QnaController {
 	@RequestMapping("qnaList")
 	public void qnaList(Model model, Pager pager) throws Exception{
 		
+		
 		List<QnaVO> ar = qnaService.qnaList(pager);
 		
 		model.addAttribute("List", ar);
 		model.addAttribute("pager", pager);
+		
 	}
 	
 	@RequestMapping("qnaWrite")
