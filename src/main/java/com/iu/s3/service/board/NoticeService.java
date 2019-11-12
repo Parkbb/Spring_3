@@ -6,12 +6,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.iu.s3.dao.board.NoticeDAO;
 import com.iu.s3.model.board.NoticeVO;
 import com.iu.s3.util.Pager;
-import com.iu.s3.util.RowMaker;
+
 
 @Service
 public class NoticeService {
@@ -48,10 +49,10 @@ public class NoticeService {
 	
 	public List<NoticeVO> noticeList(Pager pager) throws Exception{
 		
-		RowMaker rowMaker = pager.makeRow();
-		pager.makePager(noticeDAO.noticeCount());
+		pager.makeRow();
+		pager.makePage(noticeDAO.noticeCount(pager));
 		
-		
-		return noticeDAO.noticeList(rowMaker);
+		return noticeDAO.noticeList(pager);
 	}
+	
 }
