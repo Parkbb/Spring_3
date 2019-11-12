@@ -61,7 +61,7 @@
 					<li><span class="list" id="${i}">${i}</span></li>
 				</c:forEach>
 				<c:if test="${pager.curBlock ne pager.totalBlock}">
-					<li><span class="list" id="${pager.lastNum+1}">1다음</span></li>
+					<li><span class="list" id="${pager.lastNum+1}">다음</span></li>
 				</c:if>
 			</ul>
 		</div>
