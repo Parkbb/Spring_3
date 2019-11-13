@@ -4,10 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="qnaMapper">
+  	
+  	<!-- 댓글달기 -->
+  	<insert id="qnaReply" parameterType="com.iu.s3.model.board.QnaVO">
+  		insert into qna values(
+  		board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0, #{ref}, #{step}, #{depth}
+  		)
+  	
+  	</insert>
+  	<update id="qnaReplyUpdate" parameterType="com.iu.s3.model.board.QnaVO">
+  		update qna set step = step+1
+  		where ref=#{ref} and step>#{step}
+  	</update>
   	<!-- 글쓰기 -->
-  	<insert id="qnaInsert" parameterType="com.iu.s3.model.board.QnaVO">
+  	<insert id="qnaWrite" parameterType="com.iu.s3.model.board.QnaVO">
   		insert into qna
-  		values (board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0, 0, 0, 0)
+  		values (board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0, board_seq.currval, 0, 0)
   	</insert>
 	
 	<!-- 글전체 -->
@@ -27,7 +39,7 @@
 				</otherwise>
 			
 			</choose>
-		 order by num desc) N)
+		 order by ref desc, step asc) N)
 		where R between #{startRow} and #{lastRow}
 		
 	</select>
@@ -47,5 +59,10 @@
 			</otherwise>			
 		</choose>
 	
+	</select>
+	
+	<!-- 글보기 -->
+	<select id="qnaSelect" resultType="com.iu.s3.model.board.QnaVO" parameterType="java.lang.Integer">
+		select * from qna where num = #{num}
 	</select>
   </mapper>

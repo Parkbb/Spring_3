@@ -39,8 +39,9 @@
 				<c:forEach items="${List}" var="dto">
 					<tr>
 						<td style="text-align: center;">${dto.num}</td>
-						<td style="text-align: center;"><a
-							href="noticeSelect.notice?num=${dto.num}">${dto.title}</a></td>
+						<td style="text-align: center;">
+						
+						<a href="noticeSelect.notice?num=${dto.num}">${dto.title}</a></td>
 						<td style="text-align: center;">${dto.writer}</td>
 						<td style="text-align: center;">${dto.reg_date}</td>
 						<td style="text-align: center;">${dto.hit}</td>

@@ -41,7 +41,10 @@
 				<c:forEach items="${List}" var="dto">
 					<tr>
 						<td style="text-align: center;">${dto.num}</td>
-						<td style="text-align: center;"><a href="qnaSelect?num=${dto.num}">${dto.title}</a></td>
+						<td style="text-align: left;">
+						<c:forEach begin="1" end="${dto.depth}">&nbsp;&nbsp;&nbsp;</c:forEach>
+						<c:if test="${dto.depth gt 0}">&nbsp;↳</c:if>
+						<a href="qnaSelect?num=${dto.num}">${dto.title}</a></td>
 						<td style="text-align: center;">${dto.writer}</td>
 						<td style="text-align: center;">${dto.reg_date}</td>
 						<td style="text-align: center;">${dto.hit}</td>
@@ -66,9 +69,11 @@
 			</c:if>
 			
 			
+			
 			</ul>
 		</div>
-
+	<a href="qnaWrite" class="btn btn-primary"
+				style="float: right;">INSERT</a>
 
 	</div>
 	
