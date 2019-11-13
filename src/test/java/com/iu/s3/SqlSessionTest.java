@@ -12,7 +12,7 @@ import com.iu.s3.dao.board.NoticeDAO;
 
 public class SqlSessionTest extends TestAbstractCase{
 	
-	//@Inject
+	@Inject
 	private SqlSession sqlsession;
 	
 	@Inject
@@ -21,7 +21,7 @@ public class SqlSessionTest extends TestAbstractCase{
 	@Test
 	public void sqlTest() {
 		
-		assertNotNull(n);
+		assertNotNull(sqlsession);
 	}
 
 }
